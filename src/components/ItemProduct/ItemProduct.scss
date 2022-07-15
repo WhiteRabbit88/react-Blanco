@@ -1,0 +1,28 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+.listProduct {
+    padding: 30px 0;
+
+    h4 { margin: 30px 0; }
+}
+
+.card {
+    .card-image {
+        overflow: hidden;
+        img, .card-title { transition: .3s ease; }
+
+        &:hover {
+            img { transform: scale(1.5); }
+            .card-title { background-color: rgba($color: #000, $alpha: .75); }
+        }
+
+        .card-title {
+            background-color: rgba($color: #b71c1c, $alpha: .75);
+            padding: 14px;
+        }
+    }
+}
