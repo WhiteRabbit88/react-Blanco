@@ -14,7 +14,7 @@ const ItemProduct = ({title, price, image}) => {
                 </div>
                 <div class="card-action">
                     <button class="btn waves-effect waves-light">Comprar</button>
-                </div>
+                    </div>
             </div>
 
         </div>  
