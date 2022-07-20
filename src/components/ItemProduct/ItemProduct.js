@@ -1,22 +1,27 @@
 import './ItemProduct.scss'
+import ItemCount from "../ItemCount/ItemCount";
 
-const ItemProduct = ({title, price, image}) => {
-    
+const ItemProduct = ({data}) => {
+    const { title, image, price, stock } = data
+
+    //1. Mount -> Crea -> [] array vacio
+    //2. Update/Change/Actualizacion -> Cambio el valor State/prop   
+    //3. unMount/Desmontaje -> Destruye, desaparece -> return
+
     return(
         <div className='productCard'>
-            <div class="card">
-                <div class="card-image">
+            <div className="card">
+                <div className="card-image">
                     <img src={`/assets/${image}`} alt="Producto 1" />
-                    <span class="card-title">{ title }</span>
+                    <span className="card-title">{ title }</span>
                 </div>
-                <div class="card-content">
-                    <span>$ { price }</span>
+                <div className="card-content">
+                    <h3>$ { price }</h3>
+                
+                    <ItemCount stock={stock}>
+                    </ItemCount>
                 </div>
-                <div class="card-action">
-                    <button class="btn waves-effect waves-light">Comprar</button>
-                    </div>
             </div>
-
         </div>  
     )
 }

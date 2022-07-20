@@ -26,4 +26,26 @@
             padding: 14px;
         }
     }
+
+    .countProd {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;   
+
+        p {
+            margin: 0 20px;
+            padding: 0 10px;
+            color: rgba($color: #000, $alpha: .75);
+            border-bottom: 1px solid rgba($color: #000, $alpha: .25);
+            font: {
+                size: 20px;
+                weight: 500;
+            }
+        }
+    }
+
+    .card-stock {
+        color: #f06292;
+    }
 }
