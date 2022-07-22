@@ -1,15 +1,13 @@
 import { useState } from 'react'
 
 
-const ItemCount = ({stock}) => {
-    const [ contador, setContador ] = useState(1);
+const ItemCount = ({stock, initial, onAdd}) => {
+    const [ contador, setContador ] = useState(initial);
 
-    const onAdd = () => {
+    const more = () => {
         if( contador < stock ) {
             setContador(contador + 1);
-        } else {
-            alert("No es posible comprar más que el stock disponible");
-        }
+        } 
     }
 
     const onLess = () => {
@@ -20,16 +18,16 @@ const ItemCount = ({stock}) => {
     return (
         <div>
             <div className='countProd'>
-                <button className="btn waves-effect waves-light" onClick={onLess}>-</button>
+                <button className="btn waves-effect waves-light" onClick={onLess} disabled={contador === 1}>-</button>
                 <p>{ contador }</p>
-                <button className="btn waves-effect waves-light" onClick={onAdd}>+</button>
+                <button className="btn waves-effect waves-light" onClick={more} disabled={stock === contador}>+</button>
+            </div>
+
+            <div className="card-action">
+                <button className="btn waves-effect waves-light" onClick={() => onAdd(contador)} disabled={stock === 0}>Comprar</button>
             </div>
 
             <div className='card-stock'>Stock disponible: <b>{stock}</b></div>
-
-            <div className="card-action">
-                <button className="btn waves-effect waves-light">Comprar</button>
-            </div>
         </div>
     )
 }

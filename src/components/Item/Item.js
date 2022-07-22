@@ -1,24 +1,29 @@
-import './ItemProduct.scss'
+import './Item.scss'
 import ItemCount from "../ItemCount/ItemCount";
 
-const ItemProduct = ({data}) => {
-    const { title, image, price, stock } = data
+const Item = ({ name, thumbnail, price, stock }) => {
 
     //1. Mount -> Crea -> [] array vacio
     //2. Update/Change/Actualizacion -> Cambio el valor State/prop   
     //3. unMount/Desmontaje -> Destruye, desaparece -> return
 
+    const onAdd=(contador) => {
+        alert("Agregaste: " +contador+" items a tu carrito");
+    }
+
     return(
         <div className='productCard'>
             <div className="card">
                 <div className="card-image">
-                    <img src={`/assets/${image}`} alt="Producto 1" />
-                    <span className="card-title">{ title }</span>
+                    <img src={`/assets/${thumbnail}`} alt="Producto 1" />
+                    <span className="card-title">$ { price }</span>
                 </div>
                 <div className="card-content">
-                    <h3>$ { price }</h3>
+                    <h5>{ name }</h5>
                 
-                    <ItemCount stock={stock}>
+                    <a>Ver detalles del producto</a>
+
+                    <ItemCount stock={stock} initial={1} onAdd={onAdd}>
                     </ItemCount>
                 </div>
             </div>
@@ -26,4 +31,4 @@ const ItemProduct = ({data}) => {
     )
 }
 
-export default ItemProduct;
+export default Item;
