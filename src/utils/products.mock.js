@@ -3,7 +3,7 @@ const products = [
         id: 1,
         name: "Remera",
         price: 1500,
-        thumbnail: "foto3.webp", 
+        thumbnail: "foto1.webp", 
         stock: 5
     },
 
@@ -11,7 +11,7 @@ const products = [
         id: 2,
         name: "Campera",
         price: 2000,
-        thumbnail: "foto3.webp",
+        thumbnail: "foto2.webp",
         stock: 1
     },
 
@@ -27,7 +27,7 @@ const products = [
         id: 4,
         name: "Cinturon",
         price: 234,
-        thumbnail: "foto3.webp", 
+        thumbnail: "foto1.webp", 
         stock: 5
     },
 
@@ -35,7 +35,7 @@ const products = [
         id: 5,
         name: "Buzo",
         price: 34646,
-        thumbnail: "foto3.webp",
+        thumbnail: "foto2.webp",
         stock: 1
     },
 
