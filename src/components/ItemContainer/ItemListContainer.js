@@ -1,33 +1,44 @@
 import { useEffect, useState } from 'react'
 import ItemList from '../ItemList/ItemList';
 import products from "../../utils/products.mock";
+import { useParams } from 'react-router-dom';
 
 const ItemListContainer = ({section}) => {
-
+    
     const [listProducts, setListProducts] = useState([])
+    const { categoryName } = useParams()
 
-    const getProducts = new Promise( (resolve, reject) => {
+    const filterCategory = products.filter((products) => products.category === categoryName)
+
+    const getProducts = () => new Promise( (resolve, reject) => {
         setTimeout(() => {
-            resolve(products);
+            if (categoryName === products.category) {
+                resolve(filterCategory)
+            }
+
+            else {
+                resolve(products)
+            }
         }, 2000);
     })
 
     useEffect(() => {
-        getProducts
-            .then((res) => { 
-            setListProducts(res)
-            })
-            .catch((error) => { 
-            console.log('Fallo');
-            })
-            .finally(() => { })
-    }, [])
+        const getProduct = async () => {
+            try{
+                const responseLog = await getProducts()
+                setListProducts(responseLog)
+            }
+
+            catch(error){ console.log(error) }
+        }
+        getProduct()
+    }, )
 
     return(
-        <div className='listProduct'>
-        <h4>{section}</h4>
-            <div className="container">
-                <ItemList dataProducts={listProducts} />
+        <div>
+            <h4>{section}</h4>
+            <div className='listProduct'>
+                <ItemList dataProducts={listProducts}></ItemList>
             </div>
         </div>
     )

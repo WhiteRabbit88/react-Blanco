@@ -1,7 +1,8 @@
 import './Item.scss'
 import ItemCount from "../ItemCount/ItemCount";
+import { Link } from 'react-router-dom';
 
-const Item = ({ name, thumbnail, price, stock }) => {
+const Item = ({ name, thumbnail, price, stock, id }) => {
 
     //1. Mount -> Crea -> [] array vacio
     //2. Update/Change/Actualizacion -> Cambio el valor State/prop   
@@ -21,13 +22,13 @@ const Item = ({ name, thumbnail, price, stock }) => {
                 <div className="card-content">
                     <h5>{ name }</h5>
                 
-                    <a>Ver detalles del producto</a>
+                    <Link to={`/products/${id}`}><span>Ver detalles del producto</span></Link>
 
                     <ItemCount stock={stock} initial={1} onAdd={onAdd}>
                     </ItemCount>
                 </div>
             </div>
-        </div>  
+        </div> 
     )
 }
 

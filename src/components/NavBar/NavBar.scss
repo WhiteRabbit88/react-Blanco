@@ -3,3 +3,13 @@
 
     img { max-width: 100px; }
 }
+
+nav {
+    background-color: transparent;
+    box-shadow: none;
+}
+
+#nav-mobile {
+    display: flex;
+    align-items: center;
+}
