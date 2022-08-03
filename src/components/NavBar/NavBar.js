@@ -10,7 +10,7 @@ const NavBar = () => {
                     <Link to="/" className="brand-logo left"><img src='/assets/logo.png' alt='Logo' /></Link>
                     <ul id="nav-mobile" className="right hide-on-med-and-down">
                         <li><Link to="/">Home</Link></li>
-                        <li><Link to="/category">Productos</Link></li>
+                        <li><Link to="/category/:categoryName">Productos</Link></li>
                         <li><Link to="contact">Contacto</Link></li>
 
                         <CartWidget />

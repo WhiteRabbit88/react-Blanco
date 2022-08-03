@@ -1,8 +1,10 @@
+import ItemListContainer from "../components/ItemContainer/ItemListContainer"
+
 const Products = () => {
     return(
         <div className='container'>
             <section className='main-container'>
-                <h1>Productos</h1>
+                <ItemListContainer/>
             </section>
         </div>
     )

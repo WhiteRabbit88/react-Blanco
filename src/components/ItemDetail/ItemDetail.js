@@ -8,7 +8,7 @@ import './ItemDetail.scss'
 
 const ItemDetail = ({dataProducts}) => {
 
-    const {id, category, name, stock, price, thumbnail} = dataProducts;
+    const {name, price, thumbnail} = dataProducts;
 
     return(
         <div className='row width-container'>

@@ -9,24 +9,29 @@ const ItemListContainer = ({section}) => {
     const { categoryName } = useParams()
 
     const filterCategory = products.filter((products) => products.category === categoryName)
-
+    
     const getProducts = () => new Promise( (resolve, reject) => {
         setTimeout(() => {
-            if (categoryName === products.category) {
+            if (categoryName ===  "Pantalones" || categoryName ===  "Accesorios" || categoryName ===  "Remeras" || categoryName ===  "Abrigo") {
                 resolve(filterCategory)
             }
 
             else {
+                console.log("hola")
                 resolve(products)
             }
         }, 2000);
     })
+
+    
 
     useEffect(() => {
         const getProduct = async () => {
             try{
                 const responseLog = await getProducts()
                 setListProducts(responseLog)
+
+                
             }
 
             catch(error){ console.log(error) }
@@ -34,6 +39,8 @@ const ItemListContainer = ({section}) => {
         getProduct()
     }, )
 
+     
+   
     return(
         <div>
             <h4>{section}</h4>

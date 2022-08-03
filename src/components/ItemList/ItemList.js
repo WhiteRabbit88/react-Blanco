@@ -5,11 +5,8 @@ const ItemList = ({dataProducts}) => {
         <>
             {dataProducts.map( product =>
                 <Item
-                      name={product.name}
-                      thumbnail={product.thumbnail}
-                      price={product.price}
-                      stock={product.stock}
-                      id={product.id}
+                      data={product}
+                      key ={product.id}
                 />
         )}
         </>

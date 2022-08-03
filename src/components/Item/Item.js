@@ -2,12 +2,12 @@ import './Item.scss'
 import ItemCount from "../ItemCount/ItemCount";
 import { Link } from 'react-router-dom';
 
-const Item = ({ name, thumbnail, price, stock, id }) => {
+const Item = ({ data }) => {
 
-    //1. Mount -> Crea -> [] array vacio
-    //2. Update/Change/Actualizacion -> Cambio el valor State/prop   
-    //3. unMount/Desmontaje -> Destruye, desaparece -> return
 
+    const {name, thumbnail, price, stock, id } = data
+
+    
     const onAdd=(contador) => {
         alert("Agregaste: " +contador+" items a tu carrito");
     }
