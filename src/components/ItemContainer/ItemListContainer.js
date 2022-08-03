@@ -11,7 +11,7 @@ const ItemListContainer = ({section}) => {
     
     const getProducts = () => new Promise( (resolve, reject) => {
         setTimeout(() => {
-            if (categoryName ===  "Pantalones" || categoryName ===  "Accesorios" || categoryName ===  "Remeras" || categoryName ===  "Abrigo") {
+            if (categoryName) {
                 resolve(filterCategory)
             }
 

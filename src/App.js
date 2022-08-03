@@ -8,6 +8,7 @@ import Footer from './components/Footer/footer';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import Products from './pages/products';
 import Checkout from './pages/checkout';
+import ItemListContainer from './components/ItemContainer/ItemListContainer';
 
 function App() {
   return (
@@ -15,9 +16,10 @@ function App() {
         <NavBar />
 
         <Routes>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<ItemListContainer />} />
+          <Route path='/products' element={<ItemListContainer/>} />
+          <Route path='/category/:categoryName' element={<ItemListContainer />} />
           <Route path='/products/:id' element={<ItemDetailContainer />} />
-          <Route path='/category/:categoryName' element={<Products/>} />
           <Route path='/cart' element={<Checkout />} />
           <Route path='/contact' element={<Contact />} />
           <Route path='*' element={<h1>Error 404</h1>} />
