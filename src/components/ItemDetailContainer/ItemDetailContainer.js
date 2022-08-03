@@ -9,9 +9,7 @@ const ItemDetailContainer = ({section}) => {
     const {id} = useParams()
 
     const filterId = products.filter((products) => products.id === Number(id))
-
-    console.log(filterId);
-
+    
     const getItem = () => new Promise( (resolve, reject) => {
         setTimeout(() => {
             resolve(filterId[0]);

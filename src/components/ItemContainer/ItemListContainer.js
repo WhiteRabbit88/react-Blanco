@@ -4,7 +4,6 @@ import products from "../../utils/products.mock";
 import { useParams } from 'react-router-dom';
 
 const ItemListContainer = ({section}) => {
-    
     const [listProducts, setListProducts] = useState([])
     const { categoryName } = useParams()
 
@@ -17,13 +16,10 @@ const ItemListContainer = ({section}) => {
             }
 
             else {
-                console.log("hola")
                 resolve(products)
             }
         }, 2000);
     })
-
-    
 
     useEffect(() => {
         const getProduct = async () => {
@@ -39,8 +35,6 @@ const ItemListContainer = ({section}) => {
         getProduct()
     }, )
 
-     
-   
     return(
         <div>
             <h4>{section}</h4>

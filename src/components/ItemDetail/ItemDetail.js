@@ -5,10 +5,14 @@ import 'swiper/css';
 import "swiper/css/effect-cards";
 // Import my styles
 import './ItemDetail.scss'
+import ItemCount from '../ItemCount/ItemCount';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const ItemDetail = ({dataProducts}) => {
+    const {name, price, thumbnail, stock} = dataProducts;
 
-    const {name, price, thumbnail} = dataProducts;
+    const [quantitySelected, setQuantitySelected] = useState(0);
 
     return(
         <div className='row width-container'>
@@ -33,7 +37,17 @@ const ItemDetail = ({dataProducts}) => {
 
                         <div className="card-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</div>
 
-                        <button className="btn waves-effect waves-light">Comprar</button>
+                        {console.log("Cantidad seleccionada: ", quantitySelected)}
+
+                        {
+                            quantitySelected > 0
+                            ? 
+                            <div className="card-action">
+                                <Link to="/Cart"><button className="btn waves-effect waves-light">Terminar compra</button></Link>
+                            </div> 
+                            : 
+                            <ItemCount stock={stock} quantitySelected={setQuantitySelected}></ItemCount>
+                        }
                     </div>
                 </div>
             </div>

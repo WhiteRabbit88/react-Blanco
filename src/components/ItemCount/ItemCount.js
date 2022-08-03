@@ -1,8 +1,12 @@
 import { useState } from 'react'
 
 
-const ItemCount = ({stock, initial, onAdd}) => {
-    const [ contador, setContador ] = useState(initial);
+const ItemCount = ({stock, quantitySelected}) => {
+    const [ contador, setContador ] = useState(1);
+
+    const onAdd=(contador) => {
+        quantitySelected(contador);
+    }
 
     const more = () => {
         if( contador < stock ) {
@@ -15,6 +19,7 @@ const ItemCount = ({stock, initial, onAdd}) => {
             setContador(contador - 1);
         }
     }
+
     return (
         <div>
             <div className='countProd'>
