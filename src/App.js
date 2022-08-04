@@ -2,11 +2,9 @@ import 'materialize-css/dist/css/materialize.min.css'
 import './App.scss';
 import NavBar from './components/NavBar/NavBar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './pages/home';
 import Contact from './pages/contact';
 import Footer from './components/Footer/footer';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
-import Products from './pages/products';
 import Checkout from './pages/checkout';
 import ItemListContainer from './components/ItemContainer/ItemListContainer';
 
