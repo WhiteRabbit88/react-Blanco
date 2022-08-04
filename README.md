@@ -7,7 +7,7 @@ Levi's es la plataforma que te permite realizar compras de prenda de ropa, ya se
 
 Solo disponible desde clonacion. 
 
-### `$ git clone url`
+### `$ git clone https://github.com/WhiteRabbit88/react-Blanco.git`
 
 
 ## Dependencias utilizadas
@@ -26,6 +26,9 @@ En este proyecto se utilizaron todas las dependencias trabajadas en clase, las u
 
                         npm i swiper
 
+### Gif funcionamiento
+
+![image](https://github.com/WhiteRabbit88/react-Blanco/blob/master/public/assets/grabacion.gif)
 
 ## Licencia 
 
