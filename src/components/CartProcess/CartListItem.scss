@@ -1,3 +1,25 @@
-.card.horizontal .card-image img { max-width: 150px; }
+.card.horizontal .card-image img { 
+    max-width: 150px; 
+    height: 100%;
+    object-fit: cover;
+}
 
-.card-stacked { padding: 30px; }
+.card-stacked { padding: 20px 30px; }
+
+.card.horizontal { padding-right: 30px; }
+
+.card-block h5 { margin: 0; }
+
+.row .col.padding-0 { 
+    margin: 10px 0;    
+    padding: 0;
+}
+
+.price {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    h4 { margin-top: 0.5rem; }
+}

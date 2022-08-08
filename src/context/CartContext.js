@@ -4,8 +4,7 @@ export const CartContext = createContext()
 
 const CartProvider = ({children}) => { 
     const [cartProducts, setCartProducts] = useState([])
-    const [quantitySelected, setQuantitySelected] = useState([]);
-    
+
     const addProductToCart = (product, ItemCount) => {
 
         const isProductInCart = cartProducts.find(
@@ -13,17 +12,14 @@ const CartProvider = ({children}) => {
         );
 
         if(isProductInCart) {
-            const newArray = cartProducts.map(productInCart => {
-                if(productInCart.id === product.id) {
-                    return { ...productInCart, contador: productInCart.ItemCount + product.ItemCount 
-                };
-                } else {
-                    return productInCart;
-                }
-            });
+            if(isProductInCart.contador + ItemCount > isProductInCart.stock)
 
-            setCartProducts(newArray);
+            return false;
+
+            isProductInCart.contador += ItemCount
         } else {
+            product.contador = ItemCount;
+
             setCartProducts ([...cartProducts, product]);
         }
     }
@@ -42,8 +38,6 @@ const CartProvider = ({children}) => {
         setCartProducts,
         clearAll,
         clearProduct,
-        quantitySelected, 
-        setQuantitySelected,
         addProductToCart
     }
 

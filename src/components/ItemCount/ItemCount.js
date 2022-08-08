@@ -8,7 +8,7 @@ const ItemCount = ({stock, quantitySelected, productData}) => {
 
     const onAdd=(contador) => {
         quantitySelected(contador);
-        addProductToCart(productData)
+        addProductToCart(productData, contador)
     }
 
     const more = () => {

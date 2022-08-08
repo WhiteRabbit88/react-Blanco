@@ -6,12 +6,11 @@ import "swiper/css/effect-cards";
 // Import my styles
 import './ItemDetail.scss'
 import ItemCount from '../ItemCount/ItemCount';
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useState } from 'react'
 
 const ItemDetail = ({dataProducts}) => {
     const {name, price, thumbnail, stock} = dataProducts;
-
     const [quantitySelected, setQuantitySelected] = useState(0);
 
     return(
@@ -46,6 +45,7 @@ const ItemDetail = ({dataProducts}) => {
                             : 
                             <ItemCount stock={stock} quantitySelected={setQuantitySelected} productData={dataProducts}></ItemCount>
                         }
+                        
                     </div>
                 </div>
             </div>

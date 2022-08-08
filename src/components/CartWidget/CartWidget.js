@@ -5,10 +5,10 @@ import { useContext } from 'react'
 
 const CartWidget = () => {
     const cartContext = useContext(CartContext);
-    const { productCart } = cartContext;
+    const { cartProducts } = cartContext;
 
     return (
-        <li><Link to="/cart"><i className="small material-icons">add_shopping_cart</i></Link></li>
+        <li className='icon-nav'><Link to="/cart"><div className="qty-display">{cartProducts.length}</div> <i className="small material-icons"> add_shopping_cart</i></Link></li>
     )
 }
 
