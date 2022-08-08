@@ -1,10 +1,14 @@
 .brand-logo {
     position: relative !important;
+    display: flex;
 
     img { max-width: 100px; }
 }
 
 nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: transparent;
     box-shadow: none;
 }

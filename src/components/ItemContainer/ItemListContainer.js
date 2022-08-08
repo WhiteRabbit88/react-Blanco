@@ -26,8 +26,6 @@ const ItemListContainer = ({section}) => {
             try{
                 const responseLog = await getProducts()
                 setListProducts(responseLog)
-
-                
             }
 
             catch(error){ console.log(error) }
@@ -36,11 +34,12 @@ const ItemListContainer = ({section}) => {
     }, )
 
     return(
-        <div>
-            <h4>{section}</h4>
-            <div className='listProduct'>
+        <div className='container'>
+            <h4>Listado de productos</h4>
+            
+            <section className='main-container listProduct'>
                 <ItemList dataProducts={listProducts}></ItemList>
-            </div>
+            </section>
         </div>
     )
 }

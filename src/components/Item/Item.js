@@ -1,10 +1,9 @@
 import './Item.scss'
 import { Link } from 'react-router-dom';
 
+
 const Item = ({ data }) => {
     const {name, thumbnail, price, id } = data
-    
-    
 
     return(
         <div className='productCard'>

@@ -5,27 +5,29 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Contact from './pages/contact';
 import Footer from './components/Footer/footer';
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
-import Checkout from './pages/checkout';
 import ItemListContainer from './components/ItemContainer/ItemListContainer';
+import CartProvider from './context/CartContext';
+import CartPage from './pages/cart';
 
 function App() {
   return (
-    <BrowserRouter>
-        <NavBar />
+    <CartProvider>
+      <BrowserRouter>
+          <NavBar />
 
-        <Routes>
-          <Route path='/' element={<ItemListContainer />} />
-          <Route path='/products' element={<ItemListContainer/>} />
-          <Route path='/category/:categoryName' element={<ItemListContainer />} />
-          <Route path='/products/:id' element={<ItemDetailContainer />} />
-          <Route path='/cart' element={<Checkout />} />
-          <Route path='/contact' element={<Contact />} />
-          <Route path='*' element={<h1>Error 404</h1>} />
-        </Routes>
+          <Routes>
+            <Route path='/' element={<ItemListContainer />} />
+            <Route path='/products' element={<ItemListContainer/>} />
+            <Route path='/category/:categoryName' element={<ItemListContainer />} />
+            <Route path='/products/:id' element={<ItemDetailContainer />} />
+            <Route path='/cart' element={<CartPage />} />
+            <Route path='/contact' element={<Contact />} />
+            <Route path='*' element={<h1>Error 404</h1>} />
+          </Routes>
 
-        <Footer />
-
-    </BrowserRouter>
+          <Footer />
+      </BrowserRouter>
+    </CartProvider>
   );
 }
 

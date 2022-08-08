@@ -2,7 +2,7 @@ const Contact = () => {
     return(
         <div className='container'>
             <section className='main-container'>
-                <h1>Contacto</h1>
+                <h4>Contacto</h4>
             </section>
         </div>
     )

@@ -1,11 +1,14 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { CartContext } from '../../context/CartContext';
 
 
-const ItemCount = ({stock, quantitySelected}) => {
-    const [ contador, setContador ] = useState(1);
+const ItemCount = ({stock, quantitySelected, productData}) => {
+    const { addProductToCart } = useContext(CartContext)
+    const [ contador, setContador ] = useState(0);
 
     const onAdd=(contador) => {
         quantitySelected(contador);
+        addProductToCart(productData)
     }
 
     const more = () => {
@@ -23,7 +26,7 @@ const ItemCount = ({stock, quantitySelected}) => {
     return (
         <div>
             <div className='countProd'>
-                <button className="btn waves-effect waves-light" onClick={onLess} disabled={contador === 1}>-</button>
+                <button className="btn waves-effect waves-light" onClick={onLess} disabled={contador === 0}>-</button>
                 <p>{ contador }</p>
                 <button className="btn waves-effect waves-light" onClick={more} disabled={stock === contador}>+</button>
             </div>
