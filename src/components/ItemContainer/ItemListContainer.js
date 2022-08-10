@@ -18,7 +18,7 @@ const ItemListContainer = ({section}) => {
             else {
                 resolve(products)
             }
-        }, 2000);
+        });
     })
 
     useEffect(() => {

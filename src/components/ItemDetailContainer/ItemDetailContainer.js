@@ -13,7 +13,7 @@ const ItemDetailContainer = ({section}) => {
     const getItem = () => new Promise( (resolve, reject) => {
         setTimeout(() => {
             resolve(filterId[0]);
-        }, 2000);
+        });
     })
 
     useEffect(() => {

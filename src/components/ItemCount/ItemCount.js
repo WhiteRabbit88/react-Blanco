@@ -32,7 +32,7 @@ const ItemCount = ({stock, quantitySelected, productData}) => {
             </div>
 
             <div className="card-action">
-                <button className="btn waves-effect waves-light" onClick={() => onAdd(contador)} disabled={stock === 0}>Comprar</button>
+                <button className="btn waves-effect waves-light" onClick={() => onAdd(contador)} disabled={stock && contador === 0}>Comprar</button>
             </div>
 
             <div className='card-stock'>Stock disponible: <b>{stock}</b></div>
