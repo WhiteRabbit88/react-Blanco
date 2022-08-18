@@ -10,7 +10,7 @@ const products = [
 
     {
         id: 2,
-        category: "Abrigo rayado",
+        category: "Abrigo",
         name: "Sweter",
         price: 2000,
         thumbnail: "foto5.webp",

@@ -1,44 +1,36 @@
 import { useEffect, useState } from 'react'
 import ItemList from '../ItemList/ItemList';
-import products from "../../utils/products.mock";
 import { useParams } from 'react-router-dom';
+import { collection, getDocs, getFirestore, query, where } from "firebase/firestore"
 
 const ItemListContainer = ({section}) => {
-    const [listProducts, setListProducts] = useState([])
-    const { categoryName } = useParams()
-
-    const filterCategory = products.filter((products) => products.category === categoryName)
-    
-    const getProducts = () => new Promise( (resolve, reject) => {
-        setTimeout(() => {
-            if (categoryName) {
-                resolve(filterCategory)
-            }
-
-            else {
-                resolve(products)
-            }
-        });
-    })
+    const [ data, setData ] = useState([]);
+    const { categoryId } = useParams();
 
     useEffect(() => {
-        const getProduct = async () => {
-            try{
-                const responseLog = await getProducts()
-                setListProducts(responseLog)
-            }
+        const querydb = getFirestore();
+        const queryCollection = collection(querydb, 'productos')
 
-            catch(error){ console.log(error) }
+        if(categoryId) {
+            const queryFilter = query(queryCollection, where('category', '==', categoryId))
+
+            getDocs(queryFilter)
+            .then(
+                res => setData(res.docs.map( producto => ({ id: producto.id, ...producto.data() })))
+            )
+        } else {
+            getDocs(queryCollection)
+            .then(
+                res => setData(res.docs.map( producto => ({ id: producto.id, ...producto.data() }))))
         }
-        getProduct()
-    }, )
+    }, [categoryId])
 
     return(
         <div className='container'>
             <h4>Listado de productos</h4>
             
             <section className='main-container listProduct'>
-                <ItemList dataProducts={listProducts}></ItemList>
+                <ItemList data={data}></ItemList>
             </section>
         </div>
     )

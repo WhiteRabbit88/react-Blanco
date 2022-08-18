@@ -9,8 +9,8 @@ import ItemCount from '../ItemCount/ItemCount';
 import { Link } from 'react-router-dom';
 import { useState } from 'react'
 
-const ItemDetail = ({dataProducts}) => {
-    const {name, price, thumbnail, stock} = dataProducts;
+const ItemDetail = ({data}) => {
+    const {name, price, thumbnail, stock} = data;
     const [quantitySelected, setQuantitySelected] = useState(0);
 
     return(
@@ -43,7 +43,7 @@ const ItemDetail = ({dataProducts}) => {
                                 <Link to="/Cart"><button className="btn waves-effect waves-light">Terminar compra</button></Link>
                             </div> 
                             : 
-                            <ItemCount stock={stock} quantitySelected={setQuantitySelected} productData={dataProducts}></ItemCount>
+                            <ItemCount stock={stock} quantitySelected={setQuantitySelected} data={data}></ItemCount>
                         }
                         
                     </div>

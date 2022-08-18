@@ -1,40 +1,36 @@
 import { useEffect, useState } from 'react'
-import products from "../../utils/products.mock";
 import { useParams } from 'react-router-dom';
 import ItemDetail from '../ItemDetail/ItemDetail';
+//Firebase
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 const ItemDetailContainer = ({section}) => {
-
-    const [listItem, setListItem] = useState({})
+    const [data, setData] = useState({})
     const {id} = useParams()
 
-    const filterId = products.filter((products) => products.id === Number(id))
-    
-    const getItem = () => new Promise( (resolve, reject) => {
-        setTimeout(() => {
-            resolve(filterId[0]);
-        });
-    })
-
     useEffect(() => {
-        const ItemAwait = async() => {
-            try {
-                const res = await getItem()
-                setListItem(res);
-            }
+        getProduct()
+        .then((res) => {
+            setData(res)
+        })
+    }, [id]); // eslint-disable-line react-hooks/exhaustive-deps
 
-            catch(error) {
-                console.log(error);
-            }
-        }
-        ItemAwait();
-    }, []); // eslint-disable-line react-hooks/exhaustive-deps
+    const getProduct = async () => {
+        const querydb = getFirestore();
+        const docRef = doc(querydb, 'productos', id)
+        const docSnapshot = await getDoc(docRef)
+        let product = docSnapshot.data()
+
+        product.id = docSnapshot.id
+
+        return product
+    }
 
     return(
         <div>
             <h4>{section}</h4>
             <div className="container">
-                <ItemDetail dataProducts={listItem} />
+                <ItemDetail data={data} />
             </div>
         </div>
     )
