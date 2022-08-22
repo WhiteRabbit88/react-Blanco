@@ -1,12 +1,52 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CartContext } from '../../context/CartContext';
 import './CartListItem.scss';
+import Modal from '../Modal/modal';
+import { collection, addDoc } from "firebase/firestore";
+import db from '../../firebaseConfig';
+import { Rings } from  'react-loader-spinner'
 
 const CartListItem = () => {
-    const { cartProducts, clearAll, clearProduct, totalCart } = useContext(CartContext)
+    const [ showModal, setShowModal ] = useState(false)
+    const { cartProducts, clearAll, clearProduct, totalCart, totalPrice } = useContext(CartContext)
+    const [success, setSuccess] = useState()
 
-    console.log(totalCart)
+    const [order, setOrder] = useState({
+        items: cartProducts.map((product) => {
+            return {
+                id: product.id,
+                name: product.name,
+                cantidad: product.contador,
+                price: product.price
+            }
+        } ),
+        buyer: {},
+        date: new Date().toLocaleString(),
+        total: totalPrice
+    })
+
+    const [formData, setFormData] = useState({
+        name: '',
+        phone: '',
+        email:''
+    })
+
+    const handleChange = (e) => {
+        setFormData ({ ...formData, [e.target.name] : e.target.value })
+    }
+
+    const submitData = (e) => {
+        e.preventDefault()
+        pushData({...order, buyer: formData})  
+    }
+
+    const pushData = async (newOrder) => {
+        const collectionOrder = collection(db, 'ordenes')
+        const orderDoc = await addDoc(collectionOrder, newOrder)
+        
+        setSuccess(orderDoc.id)
+    }
 
     return (
         <div>
@@ -48,15 +88,24 @@ const CartListItem = () => {
 
                 }) }
 
-                <div className="row">
-                    <div className="col s10">
+                <div className="divider"></div>
+
+                <div className="section row">
+                    <div className="col s8">
                         <div className="card-action">
-                            <button className='btn waves-effect waves-light' onClick={() => clearAll()}>Borrar todo</button>
+                            <button className='btn-noStyles' onClick={() => clearAll()}>Borrar todo</button>
                         </div>
                     </div>
 
-                    <div className="col s2">
-                        Total final: <b>$ { totalCart }</b>
+                    <div className="col s4">
+                        <h5 className='right-align'>Total final: <b>$ { totalCart }</b></h5>
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="col s9"></div>
+                    <div className="col s3">
+                    <button className='btn-small waves-effect waves-light' onClick={()=>setShowModal(true)}>Terminar compra</button>
                     </div>
                 </div>
                 </>
@@ -66,6 +115,41 @@ const CartListItem = () => {
                     <Link to="/">Regresar a la tienda</Link>
                 </>
             }
+
+            {
+                showModal &&
+                <Modal close={() => setShowModal()}>
+                    {!success ? 
+                        <>
+                        <h4>Datos de contacto</h4>
+                        <form onSubmit={submitData}>
+                            <input type="text" name="name" placeholder='Ingresa tu Nombre' required value={formData.name} onChange={handleChange} />
+                            <input type="number" name="phone" placeholder='Ingresa tu Telefono' required value={formData.phone} onChange={handleChange} />
+                            <input type="email" name="email" placeholder='Ingresa tu email' required value={formData.email} onChange={handleChange} />
+                            
+                            <div className='right-align'><button className='btn-small waves-effect waves-light' type='submit'>Continuar</button></div>
+                            
+                        </form>
+                        </>
+                        : 
+
+                        <>
+                        <div className="section row">
+                            <div className="col s6">
+                                <h5 className='green-text'>¡Tu orden se generó correctamente!</h5>
+                                <p>Id de compra: <b>{success}</b></p>
+                                <p className='small-text'>Un ejecutivo se comunicará contigo en un plazo de 24hs para proceder con el proceso de pago</p>
+                            </div>
+
+                            <div className="col s6">
+                                <img src='/assets/carrito.gif' alt='Carrito completado' />
+                            </div>
+                        </div>
+                        </>
+                    }
+                </Modal>
+            }
+            
         </div>
     )
 }

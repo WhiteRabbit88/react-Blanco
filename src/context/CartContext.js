@@ -6,6 +6,7 @@ const CartProvider = ({children}) => {
     const [cartProducts, setCartProducts] = useState([])
     const [totalCart, setTotalCart] = useState(0)
     let [totalProducts, setTotalProducts] = useState(0)
+    const [ totalPrice, setTotalPrice ] = useState(0)
 
     const addProductToCart = (product, ItemCount) => {
         let isProductInCart = cartProducts.find(
@@ -17,18 +18,18 @@ const CartProvider = ({children}) => {
             
             return false; 
             isProductInCart.contador += ItemCount
-            setTotalProducts(isProductInCart.contador + totalProducts)
-            
+            setTotalProducts(isProductInCart.contador + totalProducts)    
         } else {
             product.contador = ItemCount;
             setTotalProducts(ItemCount + totalProducts)
-            
             setCartProducts ([...cartProducts, product]);
         }   
 
         setTotalCart(
             totalCart + product.price * product.contador
         )
+
+        setTotalPrice(totalCart + product.price * product.contador)
     }
 
     const clearAll = () => {
@@ -56,7 +57,8 @@ const CartProvider = ({children}) => {
         totalCart,
         totalProducts,
         clearProduct,
-        addProductToCart
+        addProductToCart,
+        totalPrice
     }
 
     return (

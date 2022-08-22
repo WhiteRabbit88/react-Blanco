@@ -23,3 +23,21 @@
 
     h4 { margin-top: 0.5rem; }
 }
+
+.section.row {
+    display: flex;
+    align-items: center;
+}
+
+.btn-noStyles {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: #34a69a;
+    text-decoration: underline;
+
+    &:hover, &:focus, &:active {
+        background-color: transparent;
+        color: #039be5;
+    }
+}
