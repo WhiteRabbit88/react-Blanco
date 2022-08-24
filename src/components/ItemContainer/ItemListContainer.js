@@ -6,7 +6,7 @@ import { collection, getDocs, getFirestore, query, where } from "firebase/firest
 const ItemListContainer = ({section}) => {
     const [ data, setData ] = useState([]);
     const { categoryId } = useParams();
-
+    
     useEffect(() => {
         const querydb = getFirestore();
         const queryCollection = collection(querydb, 'productos')

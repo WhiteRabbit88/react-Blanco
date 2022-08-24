@@ -27,6 +27,12 @@
             width: 100%;
             background: linear-gradient(to right, #b71c1b 0%, #b71c1b 25%, #34a69a 25%, #34a69a 50%, #b71c1b 50%, #b71c1b 75%, #34a69a 75%, #34a69a 100%);
         }
+
+        .right-align {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
     }
     img { max-width: 250px; }
 }

@@ -9,6 +9,7 @@ import { Rings } from  'react-loader-spinner'
 
 const CartListItem = () => {
     const [ showModal, setShowModal ] = useState(false)
+    const [ showSpinner, setShowSpinner ] = useState(false)
     const { cartProducts, clearAll, clearProduct, totalCart, totalPrice } = useContext(CartContext)
     const [success, setSuccess] = useState()
 
@@ -103,8 +104,8 @@ const CartListItem = () => {
                 </div>
 
                 <div className="row">
-                    <div className="col s9"></div>
-                    <div className="col s3">
+                    <div className="col s10"></div>
+                    <div className="col s2">
                     <button className='btn-small waves-effect waves-light' onClick={()=>setShowModal(true)}>Terminar compra</button>
                     </div>
                 </div>
@@ -127,7 +128,14 @@ const CartListItem = () => {
                             <input type="number" name="phone" placeholder='Ingresa tu Telefono' required value={formData.phone} onChange={handleChange} />
                             <input type="email" name="email" placeholder='Ingresa tu email' required value={formData.email} onChange={handleChange} />
                             
-                            <div className='right-align'><button className='btn-small waves-effect waves-light' type='submit'>Continuar</button></div>
+                            <div className='right-align'> 
+                            { showSpinner && 
+                            formData.name.length !== 0 &&
+                            formData.phone.length !== 0 &&
+                            formData.email.length !== 0 
+                            
+                            ?
+                            <Rings color = '#34a69a' width = "50" height = "50" /> : "" } <button className='btn-small waves-effect waves-light' type='submit' onClick={()=>setShowSpinner(true)}>Continuar</button></div>
                             
                         </form>
                         </>
