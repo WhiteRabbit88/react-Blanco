@@ -28,7 +28,7 @@ En este proyecto se utilizaron todas las dependencias trabajadas en clase, las u
 
 ### Gif funcionamiento
 
-![image](https://github.com/WhiteRabbit88/react-Blanco/blob/master/public/assets/grabacion.gif)
+![image](https://github.com/WhiteRabbit88/react-Blanco/blob/master/public/assets/grabacion2.gif)
 
 ## Licencia 
 
